@@ -1,0 +1,8 @@
+display_information:
+  name: Looker (Mock)
+  description: Mock Looker BI for Quince — CX analytics, support metrics, CSAT, returns, and operational dashboards
+
+settings:
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false

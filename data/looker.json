@@ -1,0 +1,537 @@
+{
+  "models": [
+    {
+      "id": "quince_cx",
+      "name": "quince_cx",
+      "label": "Quince CX & Support",
+      "description": "Customer experience and support analytics including ticket management, CSAT, NPS, and agent performance.",
+      "explores_count": 3,
+      "project_id": "quince_lookml",
+      "connection": "quince_warehouse"
+    },
+    {
+      "id": "quince_commerce",
+      "name": "quince_commerce",
+      "label": "Quince Commerce & Operations",
+      "description": "Order management, returns, refunds, inventory, and fulfillment analytics for Quince DTC operations.",
+      "explores_count": 3,
+      "project_id": "quince_lookml",
+      "connection": "quince_warehouse"
+    },
+    {
+      "id": "quince_marketing",
+      "name": "quince_marketing",
+      "label": "Quince Marketing & Growth",
+      "description": "Campaign performance, attribution, customer acquisition, and segmentation analytics.",
+      "explores_count": 2,
+      "project_id": "quince_lookml",
+      "connection": "quince_warehouse"
+    }
+  ],
+
+  "explores": [
+    {
+      "id": "quince_cx__support_tickets",
+      "model_id": "quince_cx",
+      "model_name": "quince_cx",
+      "name": "support_tickets",
+      "label": "Support Tickets",
+      "description": "All inbound customer support tickets across email, chat, and phone channels. Includes priority, status, resolution time, and agent assignment.",
+      "dimensions_count": 24,
+      "measures_count": 12,
+      "tags": ["cx", "support", "tickets", "sla", "resolution"]
+    },
+    {
+      "id": "quince_cx__customer_satisfaction",
+      "model_id": "quince_cx",
+      "model_name": "quince_cx",
+      "name": "customer_satisfaction",
+      "label": "Customer Satisfaction (CSAT & NPS)",
+      "description": "Post-interaction CSAT survey results, NPS scores, and customer sentiment trends by product category and channel.",
+      "dimensions_count": 18,
+      "measures_count": 9,
+      "tags": ["cx", "csat", "nps", "satisfaction", "sentiment"]
+    },
+    {
+      "id": "quince_cx__agent_performance",
+      "model_id": "quince_cx",
+      "model_name": "quince_cx",
+      "name": "agent_performance",
+      "label": "Agent Performance",
+      "description": "Individual agent and team-level metrics including tickets resolved, handle time, CSAT scores, escalation rate, and workload distribution.",
+      "dimensions_count": 15,
+      "measures_count": 14,
+      "tags": ["cx", "agents", "performance", "workload", "escalation"]
+    },
+    {
+      "id": "quince_commerce__orders",
+      "model_id": "quince_commerce",
+      "model_name": "quince_commerce",
+      "name": "orders",
+      "label": "Orders",
+      "description": "Customer orders including line items, SKUs, order value, fulfillment status, and delivery timelines for Quince apparel.",
+      "dimensions_count": 30,
+      "measures_count": 18,
+      "tags": ["orders", "commerce", "fulfillment", "revenue"]
+    },
+    {
+      "id": "quince_commerce__returns",
+      "model_id": "quince_commerce",
+      "model_name": "quince_commerce",
+      "name": "returns",
+      "label": "Returns & Refunds",
+      "description": "Return requests, refund processing, return reasons by product category (cashmere, silk, linen), and return rate benchmarks.",
+      "dimensions_count": 22,
+      "measures_count": 13,
+      "tags": ["returns", "refunds", "commerce", "product"]
+    },
+    {
+      "id": "quince_commerce__inventory",
+      "model_id": "quince_commerce",
+      "model_name": "quince_commerce",
+      "name": "inventory",
+      "label": "Inventory",
+      "description": "Stock levels, reorder points, warehouse locations, and sell-through rates for Quince product catalog.",
+      "dimensions_count": 16,
+      "measures_count": 10,
+      "tags": ["inventory", "stock", "warehouse", "commerce"]
+    },
+    {
+      "id": "quince_marketing__campaigns",
+      "model_id": "quince_marketing",
+      "model_name": "quince_marketing",
+      "name": "campaigns",
+      "label": "Marketing Campaigns",
+      "description": "Email, paid social, and influencer campaign performance including impressions, clicks, conversions, and ROAS.",
+      "dimensions_count": 20,
+      "measures_count": 15,
+      "tags": ["marketing", "campaigns", "attribution", "roas"]
+    },
+    {
+      "id": "quince_marketing__customer_segments",
+      "model_id": "quince_marketing",
+      "model_name": "quince_marketing",
+      "name": "customer_segments",
+      "label": "Customer Segments",
+      "description": "RFM-based customer segments, cohort analysis, LTV tiers, and repeat purchase behavior for Quince buyers.",
+      "dimensions_count": 19,
+      "measures_count": 11,
+      "tags": ["segments", "ltv", "cohorts", "rfm", "retention"]
+    }
+  ],
+
+  "looks": [
+    {
+      "id": "look_001",
+      "title": "Urgent Open Tickets by Category",
+      "description": "P1 and P2 open tickets grouped by complaint category. Updated hourly. Use to triage daily CX backlog.",
+      "model": "quince_cx",
+      "explore": "support_tickets",
+      "created_at": "2025-11-12T09:00:00Z",
+      "updated_at": "2026-09-08T06:00:00Z",
+      "created_by": "ana.reyes@quince.com",
+      "view_count": 843,
+      "embed_url": "/embed/looks/look_001",
+      "folder": "CX Operations",
+      "tags": ["cx", "tickets", "urgent", "triage", "p1", "p2"]
+    },
+    {
+      "id": "look_002",
+      "title": "CSAT Trend Last 30 Days",
+      "description": "Daily CSAT score trend with 7-day rolling average. Breaks down by channel (email, chat, phone).",
+      "model": "quince_cx",
+      "explore": "customer_satisfaction",
+      "created_at": "2025-10-01T14:30:00Z",
+      "updated_at": "2026-09-08T07:00:00Z",
+      "created_by": "marcus.lin@quince.com",
+      "view_count": 1204,
+      "embed_url": "/embed/looks/look_002",
+      "folder": "CX Operations",
+      "tags": ["cx", "csat", "trend", "satisfaction", "channel"]
+    },
+    {
+      "id": "look_003",
+      "title": "Average Resolution Time by Agent",
+      "description": "Mean time to resolution (MTTR) per agent for the current week, ranked slowest to fastest.",
+      "model": "quince_cx",
+      "explore": "agent_performance",
+      "created_at": "2025-12-05T11:00:00Z",
+      "updated_at": "2026-09-07T23:59:00Z",
+      "created_by": "ana.reyes@quince.com",
+      "view_count": 567,
+      "embed_url": "/embed/looks/look_003",
+      "folder": "Agent Management",
+      "tags": ["cx", "agents", "resolution", "mttr", "performance"]
+    },
+    {
+      "id": "look_004",
+      "title": "Return Rate by Product Category",
+      "description": "Return rate percentage by top-level product category (cashmere, silk, linen, cotton basics). Benchmarked against 90-day average.",
+      "model": "quince_commerce",
+      "explore": "returns",
+      "created_at": "2025-09-20T10:00:00Z",
+      "updated_at": "2026-09-08T05:30:00Z",
+      "created_by": "priya.sharma@quince.com",
+      "view_count": 910,
+      "embed_url": "/embed/looks/look_004",
+      "folder": "Returns & Refunds",
+      "tags": ["returns", "product", "category", "cashmere", "silk", "linen"]
+    },
+    {
+      "id": "look_005",
+      "title": "Top Complaint Reasons This Week",
+      "description": "Ranked list of the top complaint categories received in the past 7 days. Useful for proactive product and ops alerts.",
+      "model": "quince_cx",
+      "explore": "support_tickets",
+      "created_at": "2026-01-10T09:00:00Z",
+      "updated_at": "2026-09-08T07:00:00Z",
+      "created_by": "marcus.lin@quince.com",
+      "view_count": 728,
+      "embed_url": "/embed/looks/look_005",
+      "folder": "CX Operations",
+      "tags": ["cx", "tickets", "complaints", "weekly", "categories"]
+    },
+    {
+      "id": "look_006",
+      "title": "Orders with CX Touchpoints",
+      "description": "Orders that had at least one CX interaction (ticket, chat, call) in the order lifecycle. Tracks CX intervention rate by order cohort.",
+      "model": "quince_commerce",
+      "explore": "orders",
+      "created_at": "2025-11-30T15:00:00Z",
+      "updated_at": "2026-09-07T20:00:00Z",
+      "created_by": "priya.sharma@quince.com",
+      "view_count": 415,
+      "embed_url": "/embed/looks/look_006",
+      "folder": "CX Operations",
+      "tags": ["cx", "orders", "touchpoints", "intervention", "commerce"]
+    },
+    {
+      "id": "look_007",
+      "title": "Agent Workload Distribution",
+      "description": "Current open ticket count per agent with capacity flags. Identifies overloaded agents for real-time rebalancing.",
+      "model": "quince_cx",
+      "explore": "agent_performance",
+      "created_at": "2026-02-14T10:00:00Z",
+      "updated_at": "2026-09-08T08:00:00Z",
+      "created_by": "ana.reyes@quince.com",
+      "view_count": 634,
+      "embed_url": "/embed/looks/look_007",
+      "folder": "Agent Management",
+      "tags": ["cx", "agents", "workload", "capacity", "distribution"]
+    },
+    {
+      "id": "look_008",
+      "title": "Escalated Cases Report",
+      "description": "All tickets escalated to Tier 2 or management in the current month, with reason codes and resolution outcomes.",
+      "model": "quince_cx",
+      "explore": "support_tickets",
+      "created_at": "2025-10-22T13:00:00Z",
+      "updated_at": "2026-09-08T06:30:00Z",
+      "created_by": "marcus.lin@quince.com",
+      "view_count": 389,
+      "embed_url": "/embed/looks/look_008",
+      "folder": "CX Operations",
+      "tags": ["cx", "escalation", "tier2", "cases", "monthly"]
+    },
+    {
+      "id": "look_009",
+      "title": "First Response Time SLA",
+      "description": "SLA compliance rate for first response time targets by priority tier. Flags breaches with root cause attribution.",
+      "model": "quince_cx",
+      "explore": "support_tickets",
+      "created_at": "2025-12-01T09:30:00Z",
+      "updated_at": "2026-09-08T07:45:00Z",
+      "created_by": "ana.reyes@quince.com",
+      "view_count": 772,
+      "embed_url": "/embed/looks/look_009",
+      "folder": "SLA & Compliance",
+      "tags": ["cx", "sla", "first-response", "compliance", "priority"]
+    },
+    {
+      "id": "look_010",
+      "title": "Customer Lifetime Value vs Support Cost",
+      "description": "Scatter analysis of customer LTV segment vs total CX cost incurred. Identifies high-cost, low-LTV customer cohorts.",
+      "model": "quince_cx",
+      "explore": "customer_satisfaction",
+      "created_at": "2026-03-05T11:00:00Z",
+      "updated_at": "2026-09-01T12:00:00Z",
+      "created_by": "priya.sharma@quince.com",
+      "view_count": 298,
+      "embed_url": "/embed/looks/look_010",
+      "folder": "CX Strategy",
+      "tags": ["cx", "ltv", "cost", "strategy", "cohorts", "support-cost"]
+    }
+  ],
+
+  "dashboards": [
+    {
+      "id": "dash_001",
+      "title": "CX Operations Daily",
+      "description": "Real-time view of today's CX queue: open tickets, SLA status, active agents, and CSAT pulse. Primary triage dashboard for CX team leads.",
+      "created_at": "2025-10-01T09:00:00Z",
+      "updated_at": "2026-09-08T08:00:00Z",
+      "folder": "CX Operations",
+      "tiles_count": 8,
+      "view_count": 3241,
+      "embed_url": "/embed/dashboards/dash_001",
+      "tags": ["cx", "daily", "operations", "triage", "real-time"]
+    },
+    {
+      "id": "dash_002",
+      "title": "Customer Health Overview",
+      "description": "Composite customer health view combining CSAT, NPS, return rate, and repeat purchase rate. Segmented by acquisition cohort and LTV tier.",
+      "created_at": "2025-11-15T10:00:00Z",
+      "updated_at": "2026-09-07T18:00:00Z",
+      "folder": "CX Strategy",
+      "tiles_count": 10,
+      "view_count": 1876,
+      "embed_url": "/embed/dashboards/dash_002",
+      "tags": ["cx", "health", "nps", "csat", "ltv", "retention"]
+    },
+    {
+      "id": "dash_003",
+      "title": "Returns & Refunds",
+      "description": "End-to-end returns dashboard: return volume, reason codes, product-level return rates, refund cycle times, and re-purchase behavior post-return.",
+      "created_at": "2025-09-20T09:00:00Z",
+      "updated_at": "2026-09-08T05:00:00Z",
+      "folder": "Returns & Refunds",
+      "tiles_count": 7,
+      "view_count": 2108,
+      "embed_url": "/embed/dashboards/dash_003",
+      "tags": ["returns", "refunds", "product", "operations", "cx"]
+    },
+    {
+      "id": "dash_004",
+      "title": "Support SLA Tracker",
+      "description": "Live SLA compliance across all priority tiers (P1–P4). Includes first response, resolution, and follow-up SLA metrics with breach alerts.",
+      "created_at": "2026-01-05T09:00:00Z",
+      "updated_at": "2026-09-08T08:00:00Z",
+      "folder": "SLA & Compliance",
+      "tiles_count": 6,
+      "view_count": 1654,
+      "embed_url": "/embed/dashboards/dash_004",
+      "tags": ["cx", "sla", "compliance", "priority", "breach", "alerts"]
+    },
+    {
+      "id": "dash_005",
+      "title": "Weekly CX Leadership Summary",
+      "description": "Executive-ready weekly CX summary: CSAT/NPS trend, ticket volume vs. prior week, top issues, escalation rate, agent utilization, and recommended actions.",
+      "created_at": "2025-12-01T09:00:00Z",
+      "updated_at": "2026-09-07T23:00:00Z",
+      "folder": "CX Strategy",
+      "tiles_count": 9,
+      "view_count": 987,
+      "embed_url": "/embed/dashboards/dash_005",
+      "tags": ["cx", "leadership", "weekly", "executive", "summary", "nps"]
+    }
+  ],
+
+  "query_results": [
+    {
+      "id": "qr_001",
+      "title": "Open Tickets by Priority",
+      "model": "quince_cx",
+      "explore": "support_tickets",
+      "dimensions": ["support_tickets.priority"],
+      "measures": ["support_tickets.count"],
+      "filters": {"support_tickets.status": "Open"},
+      "result_rows": [
+        {"priority": "P1", "count": 14},
+        {"priority": "P2", "count": 87},
+        {"priority": "P3", "count": 312},
+        {"priority": "P4", "count": 156}
+      ],
+      "ran_at": "2026-09-08T08:01:00Z",
+      "row_count": 4
+    },
+    {
+      "id": "qr_002",
+      "title": "CSAT Scores Last 7 Days",
+      "model": "quince_cx",
+      "explore": "customer_satisfaction",
+      "dimensions": ["customer_satisfaction.date"],
+      "measures": ["customer_satisfaction.avg_score"],
+      "filters": {"customer_satisfaction.date": "7 days"},
+      "result_rows": [
+        {"date": "2026-09-01", "avg_score": 4.31},
+        {"date": "2026-09-02", "avg_score": 4.28},
+        {"date": "2026-09-03", "avg_score": 4.35},
+        {"date": "2026-09-04", "avg_score": 4.22},
+        {"date": "2026-09-05", "avg_score": 4.40},
+        {"date": "2026-09-06", "avg_score": 4.38},
+        {"date": "2026-09-07", "avg_score": 4.45}
+      ],
+      "ran_at": "2026-09-08T07:00:00Z",
+      "row_count": 7
+    },
+    {
+      "id": "qr_003",
+      "title": "Top 5 Complaint Categories",
+      "model": "quince_cx",
+      "explore": "support_tickets",
+      "dimensions": ["support_tickets.complaint_category"],
+      "measures": ["support_tickets.count"],
+      "filters": {"support_tickets.created_date": "7 days"},
+      "result_rows": [
+        {"category": "Sizing / Fit", "count": 203},
+        {"category": "Shipping Delay", "count": 178},
+        {"category": "Product Quality", "count": 134},
+        {"category": "Returns & Refunds", "count": 121},
+        {"category": "Billing / Payment", "count": 89}
+      ],
+      "ran_at": "2026-09-08T07:30:00Z",
+      "row_count": 5
+    },
+    {
+      "id": "qr_004",
+      "title": "Agent Performance This Week",
+      "model": "quince_cx",
+      "explore": "agent_performance",
+      "dimensions": ["agent_performance.agent_name"],
+      "measures": ["agent_performance.tickets_resolved", "agent_performance.avg_resolution_hrs", "agent_performance.csat_avg"],
+      "filters": {"agent_performance.week": "this week"},
+      "result_rows": [
+        {"agent_name": "Sofia Mendez", "tickets_resolved": 94, "avg_resolution_hrs": 3.2, "csat_avg": 4.6},
+        {"agent_name": "James Park", "tickets_resolved": 81, "avg_resolution_hrs": 4.1, "csat_avg": 4.4},
+        {"agent_name": "Nia Thompson", "tickets_resolved": 76, "avg_resolution_hrs": 5.8, "csat_avg": 4.1},
+        {"agent_name": "Carlos Rivera", "tickets_resolved": 70, "avg_resolution_hrs": 4.9, "csat_avg": 4.3},
+        {"agent_name": "Leila Hassan", "tickets_resolved": 68, "avg_resolution_hrs": 6.5, "csat_avg": 3.9},
+        {"agent_name": "Tyler Brooks", "tickets_resolved": 55, "avg_resolution_hrs": 7.2, "csat_avg": 3.7}
+      ],
+      "ran_at": "2026-09-08T08:00:00Z",
+      "row_count": 6
+    },
+    {
+      "id": "qr_005",
+      "title": "Return Rate by Category",
+      "model": "quince_commerce",
+      "explore": "returns",
+      "dimensions": ["returns.product_category"],
+      "measures": ["returns.return_rate_pct"],
+      "filters": {},
+      "result_rows": [
+        {"product_category": "Cashmere Sweaters", "return_rate_pct": 8.2},
+        {"product_category": "Silk Blouses", "return_rate_pct": 11.4},
+        {"product_category": "Linen Pants", "return_rate_pct": 9.7},
+        {"product_category": "Cotton Basics", "return_rate_pct": 6.3},
+        {"product_category": "Denim", "return_rate_pct": 14.1},
+        {"product_category": "Activewear", "return_rate_pct": 7.8},
+        {"product_category": "Outerwear", "return_rate_pct": 5.9}
+      ],
+      "ran_at": "2026-09-08T06:00:00Z",
+      "row_count": 7
+    },
+    {
+      "id": "qr_006",
+      "title": "SLA Compliance This Month",
+      "model": "quince_cx",
+      "explore": "support_tickets",
+      "dimensions": ["support_tickets.sla_tier"],
+      "measures": ["support_tickets.compliance_pct"],
+      "filters": {"support_tickets.created_date": "this month"},
+      "result_rows": [
+        {"sla_tier": "P1 — 2hr First Response", "compliance_pct": 91.4},
+        {"sla_tier": "P2 — 4hr First Response", "compliance_pct": 87.6},
+        {"sla_tier": "P1 — 8hr Resolution", "compliance_pct": 83.2},
+        {"sla_tier": "P2 — 24hr Resolution", "compliance_pct": 94.1},
+        {"sla_tier": "P3 — 48hr Resolution", "compliance_pct": 97.8},
+        {"sla_tier": "P4 — 5d Resolution", "compliance_pct": 99.2}
+      ],
+      "ran_at": "2026-09-08T07:45:00Z",
+      "row_count": 6
+    },
+    {
+      "id": "qr_007",
+      "title": "Escalation Rate by Channel",
+      "model": "quince_cx",
+      "explore": "support_tickets",
+      "dimensions": ["support_tickets.channel"],
+      "measures": ["support_tickets.escalation_rate_pct"],
+      "filters": {"support_tickets.created_date": "30 days"},
+      "result_rows": [
+        {"channel": "Email", "escalation_rate_pct": 6.8},
+        {"channel": "Live Chat", "escalation_rate_pct": 9.3},
+        {"channel": "Phone", "escalation_rate_pct": 12.1},
+        {"channel": "Social DM", "escalation_rate_pct": 18.4},
+        {"channel": "SMS", "escalation_rate_pct": 4.2}
+      ],
+      "ran_at": "2026-09-08T07:00:00Z",
+      "row_count": 5
+    },
+    {
+      "id": "qr_008",
+      "title": "Orders Requiring CX Intervention",
+      "model": "quince_commerce",
+      "explore": "orders",
+      "dimensions": ["orders.date"],
+      "measures": ["orders.cx_intervention_count"],
+      "filters": {"orders.date": "14 days"},
+      "result_rows": [
+        {"date": "2026-08-26", "order_count": 142},
+        {"date": "2026-08-27", "order_count": 138},
+        {"date": "2026-08-28", "order_count": 97},
+        {"date": "2026-08-29", "order_count": 84},
+        {"date": "2026-08-30", "order_count": 91},
+        {"date": "2026-08-31", "order_count": 155},
+        {"date": "2026-09-01", "order_count": 168},
+        {"date": "2026-09-02", "order_count": 173},
+        {"date": "2026-09-03", "order_count": 121},
+        {"date": "2026-09-04", "order_count": 109},
+        {"date": "2026-09-05", "order_count": 116},
+        {"date": "2026-09-06", "order_count": 182},
+        {"date": "2026-09-07", "order_count": 194},
+        {"date": "2026-09-08", "order_count": 67}
+      ],
+      "ran_at": "2026-09-08T08:05:00Z",
+      "row_count": 14
+    }
+  ],
+
+  "connections": [
+    {
+      "id": "quince_warehouse",
+      "name": "quince_warehouse",
+      "dialect": "bigquery",
+      "database": "quince-analytics-prod",
+      "host": "bigquery.googleapis.com",
+      "schema": "quince_dwh",
+      "status": "connected"
+    },
+    {
+      "id": "quince_warehouse_dev",
+      "name": "quince_warehouse_dev",
+      "dialect": "bigquery",
+      "database": "quince-analytics-dev",
+      "host": "bigquery.googleapis.com",
+      "schema": "quince_dwh_dev",
+      "status": "connected"
+    }
+  ],
+
+  "projects": [
+    {
+      "id": "quince_lookml",
+      "name": "quince_lookml",
+      "git_repo": "github.com/quince/looker-lookml",
+      "pull_frequency": "continuous",
+      "validation_required": true,
+      "last_deployed_at": "2026-09-07T22:14:33Z"
+    }
+  ],
+
+  "health_status": {
+    "status": "good",
+    "checks": [
+      {"name": "database_connectivity", "status": "good", "message": "quince_warehouse connected (bigquery). Latency 48ms."},
+      {"name": "scheduler", "status": "good", "message": "All 14 scheduled jobs running on time."},
+      {"name": "embed_tokens", "status": "good", "message": "Embed token service operational."},
+      {"name": "lookml_validation", "status": "good", "message": "quince_lookml project validated. No errors."},
+      {"name": "cache", "status": "good", "message": "Query cache hit rate 72% over last hour."},
+      {"name": "api_health", "status": "good", "message": "Looker API v4.0 responding normally."}
+    ],
+    "query_performance_ms": 312,
+    "active_users_30d": 47,
+    "scheduled_jobs_running": 14,
+    "last_updated": "2026-09-08T08:10:00Z"
+  }
+}
